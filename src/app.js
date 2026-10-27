@@ -8,7 +8,13 @@ const initDb = require('./db/initDb');
 const studentRoutes = require('./routes/student.routes');
 const errorHandler = require('./middlewares/errorHandler');
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./config/swagger');
+
 const app = express();
+
+// Serve interactive Swagger docs at /docs
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Core Middlewares
 app.use(cors());
